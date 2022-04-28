@@ -53,5 +53,6 @@ g_p = imresize(g_p, [rows, cols]);
 % Output image
 sr_image = g_p;
 
+
 end
 
