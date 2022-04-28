@@ -2,7 +2,7 @@
 % Read image and blur it with a 3x3 or 5x5 Gaussian filter
 %---------------------------------------------------------
 clear all;
-img = imread('BenchmarkIMAGES/i1.jpg');%Provide input image path
+img = imread('MIT300/i17.jpg');%Provide input image path
 %gfrgb = imfilter(img, fspecial('gaussian', 3, 3), 'symmetric', 'conv');
 figure('Name','Original');
 imshow(img);
@@ -29,5 +29,6 @@ sm = (l-lm).^2 + (a-am).^2 + (b-bm).^2;
 figure('Name','Saliency Map');
 imshow(sm,[]);
 
-
+combImg = imfuse(img, sm, 'montage');
+imshow(combImg);
 %---------------------------------------------------------
