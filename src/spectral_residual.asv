@@ -26,13 +26,13 @@ F = fft2(im_pad);
 F_mag = log(abs(F));
 F_phase = angle(F);
 
-%average filter on input
+% Filter input image with average filter
 specRes = F_mag - imfilter(F_mag, H);
 
-%saliency map
+% Generate saliency map
 specRes = exp(specRes + 1i*F_phase);
 
-%inverse Fourier transform
+% Perform inverse Fourier transform
 g_p = abs(ifft2(specRes));
 for r = 1:P
     for c = 1:Q
@@ -41,7 +41,7 @@ for r = 1:P
 end
 g_p = g_p.^2;
 
-% Remove padding
+% Remove padding from filtered image
 g_p = imfilter(g_p, fspecial('disk', 3));
 g_p = g_p(1:64, 1:64);
 g_p = imresize(g_p, [rows, cols]);
