@@ -1,0 +1,28 @@
+clear all;
+close all;
+imgT = imread('GT/i104_truth.jpg');%Provide input image path
+%gfrgb = imfilter(img, fspecial('gaussian', 3, 3), 'symmetric', 'conv');
+figure('Name','truth');
+imshow(imgT);
+
+
+
+img = imread('results/frequencyTuned_result_i104_single.jpg');%Provide input image path
+%gfrgb = imfilter(img, fspecial('gaussian', 3, 3), 'symmetric', 'conv');
+numPix = (size(imgT,1)*size(imgT,2))
+
+figure('Name','FT');
+imshow(img);
+
+figure('Name','hist truth');
+histT = imhist(imgT)/numPix;
+bar(histT)
+figure('Name','hist FT');
+histFT = imhist(img)/(size(imgT,1)*size(imgT,2));
+bar(histFT)
+
+
+
+histIntersect= min(histT,histFT);
+
+sum(histIntersect)/(size(imgT,1)*size(imgT,2));

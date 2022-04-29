@@ -1,4 +1,5 @@
-function [sr_image] = spectral_residual(img, n)
+img = imread('MIT300/i188.jpg')
+n=11;
 %SPECTRAL_RESIDUAL Function to compute Spectral Residual saliency map
 %   Computes the Spectral Residual saliency map based on the following
 %   paper: Saliency Detection: A Spectral Residual Approach (Hou and
@@ -53,6 +54,10 @@ g_p = imresize(g_p, [rows, cols]);
 % Output image
 sr_image = g_p;
 
+fimg = uint8(255*MinMaxNorm(sr_image));
+imwrite(fimg,'results/spectral_result_i188_single.jpg')
 
-end
+
+
+
 
